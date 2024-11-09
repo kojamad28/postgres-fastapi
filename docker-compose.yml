@@ -5,25 +5,38 @@ services:
     environment:
       - TZ=Asia/Tokyo
     env_file:
-      - ./.env
+      - ./postgres/.env
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-  python:
+  fastapi:
     build: 
       context: .
       args:
         REQ_TXT: "requirements.txt"
-    image: kojamad28/basic-postgres-python
-    container_name: python
-    command: /bin/bash
+    image: kojamad28/postgres-fastapi
+    container_name: fastapi
+    command: uvicorn main:app --host=0.0.0.0 --port=8000
     volumes:
-     - .:/usr/src/app
-    tty: true
-    stdin_open: true
+      - .:/usr/src/app
+    expose:
+      - "8000"
+    env_file:
+      - ./api/.env
     depends_on:
       - postgres
+  nginx:
+    image: kojamad28/fastapi-nginx
+    container_name: nginx
+    build: ./nginx
+    volumes:
+      - ./static:/usr/src/app/static
+      - ./media:/usr/src/app/media
+    ports:
+      - "80:80"
+    depends_on:
+      - fastapi
 
 volumes:
   postgres_data:
