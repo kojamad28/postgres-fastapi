@@ -27,7 +27,7 @@ services:
     depends_on:
       - postgres
   nginx:
-    image: kojamad28/fastapi-nginx
+    image: kojamad28/python-nginx
     container_name: nginx
     build: ./nginx
     volumes:
