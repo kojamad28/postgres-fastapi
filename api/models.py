@@ -4,12 +4,12 @@ from sqlmodel import SQLModel, Field
 
 
 class BaseUser(SQLModel):
-    name: str = Field(index=True)  # TODO: indexとは？
+    name: str = Field(index=True)
     email: str = Field()
 
 
 class User(BaseUser, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)  # TODO: idがNoneでも良いのか？
+    id: Optional[int] = Field(default=None, primary_key=True)
 
 
 class CreatedUser(BaseUser):
@@ -21,4 +21,5 @@ class RetrievedUser(BaseUser):
 
 
 class UpdatedUser(BaseUser):
-    id: int
+    name: Optional[str] = Field(default=None, index=True)
+    email: Optional[str] = Field(default=None)
