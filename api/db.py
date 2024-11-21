@@ -14,10 +14,10 @@ db_url = URL.create(
         "postgresql+psycopg",
         username=config["DATABASE_USER"],
         password=config["DATABASE_PASSWORD"],  # plain (unescaped) text
-        host=config["DATABASE_HOST"],
-        port=config["DATABASE_PORT"],
-        database=config["DATABASE_DB"],
-        query={"options": f"-c search_path={config['DATABASE_SCHEMA']}"},
+        host=config.get("DATABASE_HOST", "postgres"),
+        port=config.get("DATABASE_PORT", "5432"),
+        database=config.get("DATABASE_DB", "postgres"),
+        query={"options": f"-c search_path={config.get('DATABASE_SCHEMA', 'public')}"},
 )
 connect_args = {}
 engine = create_engine(db_url, echo=DEBUG, connect_args=connect_args)
