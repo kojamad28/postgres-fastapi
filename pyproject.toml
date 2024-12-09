@@ -20,6 +20,12 @@ legacy_tox_ini = """
     commands = mypy .
 """
 
+[tool.pytest.ini_options]
+python_files = ["test_*.py"]
+addopts = "-v --reuse-db"
+testpaths = ["tests"]
+norecursedirs = '.venv'
+
 [tool.ruff]
 lint.ignore = ['E501']
 lint.select = [

@@ -2,6 +2,11 @@ black
 ruff
 mypy
 tox
+pytest
+pytest-randomly
+pytest-cov
+pytest-structlog
+factory-boy
 psycopg
 sqlmodel
 sqlacodegen_v2
