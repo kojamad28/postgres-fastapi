@@ -14,7 +14,7 @@ router = APIRouter()
 @router.get('/list/', response_model=List[RetrievedUser])
 async def get_users(
     session: Session = Depends(get_session), offset: int = Query(default=0), limit: int = Query(default=100, lte=100)
-) -> RetrievedUser:
+) -> List[RetrievedUser]:
     return retrieve_models(session, User, offset, limit)
 
 
