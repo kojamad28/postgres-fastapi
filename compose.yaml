@@ -20,7 +20,7 @@ services:
         REQ_TXT: "prod.txt"
     command: uvicorn main:app --host=0.0.0.0 --port=8000
     volumes:
-      - .:/usr/src/app
+      - .:/usr/src
     expose:
       - "8000"
     env_file:
@@ -32,8 +32,8 @@ services:
     container_name: nginx
     build: ./nginx
     volumes:
-      - ./static:/usr/src/app/static
-      - ./media:/usr/src/app/media
+      - ./static:/usr/src/static
+      - ./media:/usr/src/media
     ports:
       - "80:80"
     depends_on:
