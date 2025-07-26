@@ -4,7 +4,7 @@ from dotenv import dotenv_values
 from sqlalchemy import URL
 from sqlmodel import SQLModel, Session, create_engine
 
-BASE_DIR = Path(__file__).parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 #config = dotenv_values(BASE_DIR / "db" / ".env.dev")
