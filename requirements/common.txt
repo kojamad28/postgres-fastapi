@@ -1,4 +1,5 @@
 python-dotenv
+structlog
 psycopg
 sqlmodel
 sqlacodegen
